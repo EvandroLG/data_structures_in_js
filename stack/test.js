@@ -31,4 +31,21 @@ describe('stack', () => {
       2: 'lua',
     });
   });
+
+  it('should return the last item from the stack', () => {
+    const stack = new Stack();
+    expect(stack.peek()).toBeUndefined();
+
+    stack.push('javascript');
+    stack.push('python');
+    stack.push('lua');
+
+    expect(stack.peek()).toBe('lua');
+    expect(stack.size).toBe(3);
+    expect(stack.storage).toMatchObject({
+      0: 'javascript',
+      1: 'python',
+      2: 'lua',
+    });
+  });
 });

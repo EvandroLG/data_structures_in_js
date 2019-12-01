@@ -4,7 +4,7 @@ class Stack {
     this.size = 0;
   }
 
-  isEmpty() {
+  _isEmpty() {
     return this.size === 0;
   }
 
@@ -25,7 +25,7 @@ class Stack {
    * @returns {*}
    */
   pop() {
-    if (this.isEmpty()) {
+    if (this._isEmpty()) {
       return;
     }
 
@@ -35,6 +35,18 @@ class Stack {
     this.size = this.size - 1;
 
     return value;
+  }
+
+  /*
+   * Return value from the end of the stack
+   * @returns {*}
+   */
+  peek() {
+    if (this._isEmpty()) {
+      return;
+    }
+
+    return this.storage[this.size - 1];
   }
 }
 
