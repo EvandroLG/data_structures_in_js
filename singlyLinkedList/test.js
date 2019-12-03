@@ -56,4 +56,22 @@ describe('singly linked list', () => {
     expect(linkedList.findByIndex(1)).toBe('ruby');
     expect(linkedList.findByIndex(2)).toBe('c');
   });
+
+  it('should remove node by value', () => {
+    const linkedList = new SinglyLinkedList();
+    expect(linkedList.removeByValue('javascript')).toBeFalsy();
+
+    linkedList.addLast('javascript');
+    expect(linkedList.removeByValue('javascript')).toBeTruthy();
+    expect(linkedList.findByIndex(0)).toBeFalsy();
+    expect(linkedList.size).toBe(0);
+
+    linkedList.addLast('javascript');
+    linkedList.addLast('typescript');
+    linkedList.addLast('ruby');
+    linkedList.addLast('python');
+    expect(linkedList.removeByValue('typescript')).toBeTruthy();
+    expect(linkedList.findByIndex(1)).toBe('ruby');
+    expect(linkedList.size).toBe(3);
+  });
 });

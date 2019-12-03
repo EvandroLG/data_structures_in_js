@@ -6,6 +6,14 @@ class SinglyLinkedList {
   }
 
   /*
+   * Returns true if list is empty
+   * @returns {Object}
+   */
+  _isEmpty() {
+    return this.size === 0;
+  }
+
+  /*
    * Creates new node using value passed by parameter
    * @params {*} value - node value
    * @returns {Object}
@@ -75,7 +83,7 @@ class SinglyLinkedList {
   }
 
   /*
-   * Remove by index
+   * Removes by index
    * @params {Number} index - node index
    * @returns {Boolean}
    */
@@ -113,6 +121,41 @@ class SinglyLinkedList {
 
     this.size = this.size - 1;
     return true;
+  }
+
+  /*
+   * Removes first item with its value
+   * @params {*} value - node value
+   * @returns {Boolean}
+   */
+  removeByValue(value) {
+    if (this._isEmpty()) {
+      return false;
+    }
+
+    if (this._head.value === value) {
+      this._head = this._head.next;
+      this.size = this.size - 1;
+
+      return true;
+    }
+
+    let prev = this._head;
+    let current = this._head.next;
+
+    while (current) {
+      if (current.value === value) {
+        prev.next = current.next;
+        this.size = this.size - 1;
+
+        return true;
+      }
+
+      prev = current;
+      current = current.next;
+    }
+
+    return false;
   }
 }
 
