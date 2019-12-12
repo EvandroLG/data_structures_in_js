@@ -95,6 +95,33 @@ class Graph {
       }
     }
   }
+
+  /*
+   * Breadth First Search
+   * @params {*} start - initial node
+   * @params {*} callback
+   * @returns {undefined}
+   */
+  bfs(start, callback = Function.prototype) {
+    const queue = [];
+    const visited = {};
+
+    queue.push(start);
+    visited[start] = true;
+
+    while (queue.length) {
+      const current = queue.shift();
+      const neighbors = this.graph[current].edges;
+      callback(current);
+
+      for (const neighbor of neighbors) {
+        if (!visited[neighbor]) {
+          queue.push(neighbor);
+          visited[neighbor] = true;
+        }
+      }
+    }
+  }
 }
 
 module.exports = Graph;

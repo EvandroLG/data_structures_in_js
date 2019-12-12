@@ -94,4 +94,21 @@ describe('graph', () => {
     expect(fn).toHaveBeenNthCalledWith(2, 'Uruguay');
     expect(fn).toHaveBeenNthCalledWith(3, 'Argentina');
   });
+
+  it('should traverse graph using bfs algorithm', () => {
+    const graph = new Graph();
+    graph.addEdge('Brazil', 'Argentina');
+    graph.addEdge('Brazil', 'Uruguay');
+    graph.addEdge('Argentina', 'Uruguay');
+    graph.addEdge('Ireland', 'UK');
+    graph.addEdge('EUA', 'Canada');
+
+    const fn = jest.fn();
+    graph.bfs('Brazil', fn);
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(1, 'Brazil');
+    expect(fn).toHaveBeenNthCalledWith(2, 'Argentina');
+    expect(fn).toHaveBeenNthCalledWith(3, 'Uruguay');
+  });
 });
