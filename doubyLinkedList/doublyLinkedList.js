@@ -141,6 +141,47 @@ class DoublyLinkedList {
 
     return true;
   }
+
+  /*
+   * Removes by value
+   * @params {*} value - node value
+   * @returns {Boolean}
+   */
+  removeByValue(value) {
+    if (this._isEmpty()) {
+      return false;
+    }
+
+    if (this._head.value === value) {
+      this._head = this._head.next;
+      this.size = this.size - 1;
+
+      return true;
+    }
+
+    let current = this._head.next;
+
+    while (current) {
+      if (current.value === value) {
+        this.size = this.size - 1;
+        const next = current.next;
+
+        if (!next) {
+          current.prev.next = null;
+          this._tail = current.prev;
+        } else {
+          next.prev = current.prev;
+          current.prev.next = next;
+        }
+
+        return true;
+      }
+
+      current = current.next;
+    }
+
+    return false;
+  }
 }
 
 module.exports = DoublyLinkedList;

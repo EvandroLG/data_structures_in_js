@@ -64,4 +64,40 @@ describe('doubly linked list', () => {
     expect(linkedList.findByIndex(0)).toBe('javascript');
     expect(linkedList.findByIndex(1)).toBe('python');
   });
+
+  it('should remove item by value', () => {
+    const linkedList = new DoublyLinkedList();
+    expect(linkedList.removeByValue('javascript')).toBeFalsy();
+
+    linkedList.addLast('javascript');
+    expect(linkedList.removeByValue('javascript')).toBeTruthy();
+    expect(linkedList.size).toBe(0);
+    expect(linkedList.contains('javascript')).toBeFalsy();
+
+    linkedList.addLast('javascript');
+    linkedList.addLast('lua');
+    expect(linkedList.removeByValue('javascript')).toBeTruthy();
+    expect(linkedList.size).toBe(1);
+    expect(linkedList.contains('javascript')).toBeFalsy();
+    expect(linkedList.removeByValue('lua')).toBeTruthy();
+    expect(linkedList.size).toBe(0);
+    expect(linkedList.contains('lua')).toBeFalsy();
+
+    linkedList.addLast('javascript');
+    linkedList.addLast('lua');
+    linkedList.addLast('ruby');
+    linkedList.addLast('python');
+    expect(linkedList.removeByValue('python')).toBeTruthy();
+    expect(linkedList.size).toBe(3);
+    expect(linkedList.contains('python')).toBeFalsy();
+    expect(linkedList.removeByValue('lua')).toBeTruthy();
+    expect(linkedList.size).toBe(2);
+    expect(linkedList.contains('lua')).toBeFalsy();
+    expect(linkedList.removeByValue('ruby')).toBeTruthy();
+    expect(linkedList.size).toBe(1);
+    expect(linkedList.contains('ruby')).toBeFalsy();
+    expect(linkedList.removeByValue('javascript')).toBeTruthy();
+    expect(linkedList.size).toBe(0);
+    expect(linkedList.contains('javascript')).toBeFalsy();
+  });
 });
