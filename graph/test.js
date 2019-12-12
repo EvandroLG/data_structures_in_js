@@ -77,4 +77,21 @@ describe('graph', () => {
       },
     });
   });
+
+  it('should traverse graph using dfs algorithm', () => {
+    const graph = new Graph();
+    graph.addEdge('Brazil', 'Argentina');
+    graph.addEdge('Brazil', 'Uruguay');
+    graph.addEdge('Argentina', 'Uruguay');
+    graph.addEdge('Ireland', 'UK');
+    graph.addEdge('EUA', 'Canada');
+
+    const fn = jest.fn();
+    graph.dfs('Brazil', fn);
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(1, 'Brazil');
+    expect(fn).toHaveBeenNthCalledWith(2, 'Uruguay');
+    expect(fn).toHaveBeenNthCalledWith(3, 'Argentina');
+  });
 });

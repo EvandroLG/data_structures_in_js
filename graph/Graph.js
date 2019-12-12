@@ -69,7 +69,32 @@ class Graph {
     return true;
   }
 
-  dfs() {}
+  /*
+   * Depth First Search
+   * @params {*} start - initial node
+   * @params {*} callback
+   * @returns {undefined}
+   */
+  dfs(start, callback = Function.prototype) {
+    const stack = [];
+    const visited = {};
+
+    stack.push(start);
+    visited[start] = true;
+
+    while (stack.length) {
+      const current = stack.pop();
+      const neighbors = this.graph[current].edges;
+      callback(current);
+
+      for (const neighbor of neighbors) {
+        if (!visited[neighbor]) {
+          stack.push(neighbor);
+          visited[neighbor] = true;
+        }
+      }
+    }
+  }
 }
 
 module.exports = Graph;
