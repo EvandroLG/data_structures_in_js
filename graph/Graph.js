@@ -51,6 +51,25 @@ class Graph {
     this.graph[v1].edges.add(v2);
     this.graph[v2].edges.add(v1);
   }
+
+  /*
+   * Removes an edges between vertice a and vertice b
+   * @params {*} v1 - value of vertice 1
+   * @params {*} v2 - value of vertice 2
+   * @returns {Boolean}
+   */
+  removeEdges(v1, v2) {
+    if (!this.graph[v1] || !this.graph[v2]) {
+      return false;
+    }
+
+    this.graph[v1].edges.delete(v2);
+    this.graph[v2].edges.delete(v1);
+
+    return true;
+  }
+
+  dfs() {}
 }
 
 module.exports = Graph;

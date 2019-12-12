@@ -43,4 +43,38 @@ describe('graph', () => {
       },
     });
   });
+
+  it('should remove edges between two vertices', () => {
+    const graph = new Graph();
+    graph.addEdge('Brazil', 'Argentina');
+    graph.addEdge('Ireland', 'UK');
+    graph.addEdge('EUA', 'Canada');
+
+    expect(graph.removeEdges('Ireland', 'UK')).toBeTruthy();
+
+    const keys = Object.keys(graph.graph);
+    expect(keys.length).toBe(6);
+
+    expect(graph.graph).toMatchObject({
+      Brazil: {
+        edges: new Set(['Argentina']),
+      },
+
+      Ireland: {
+        edges: new Set(),
+      },
+
+      UK: {
+        edges: new Set(),
+      },
+
+      EUA: {
+        edges: new Set(['Canada']),
+      },
+
+      Canada: {
+        edges: new Set(['EUA']),
+      },
+    });
+  });
 });
