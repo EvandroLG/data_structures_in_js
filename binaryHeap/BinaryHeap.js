@@ -23,7 +23,7 @@ const BinaryHeap = () => {
     removeMax() {
       const max = items[0];
       const last = items.pop();
-      items[0] = last;
+      let current = (items[0] = last);
 
       let i = 0;
       while (true) {
@@ -35,7 +35,7 @@ const BinaryHeap = () => {
 
         if (leftIndex < items.length) {
           left = items[leftIndex];
-          if (left > items[0]) swap = leftIndex;
+          if (left > current) swap = leftIndex;
         }
 
         if (rightIndex < items.length) {
@@ -51,7 +51,7 @@ const BinaryHeap = () => {
 
         if (swap === null) break;
         items[i] = items[swap];
-        items[swap] = items[0];
+        items[swap] = current;
         i = swap;
       }
 

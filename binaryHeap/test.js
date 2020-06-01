@@ -18,5 +18,6 @@ describe('binary heap', () => {
 
     expect(binaryHeap.size()).toBe(4);
     expect(max).toBe(45);
+    expect(binaryHeap.toString()).toBe('12 8 7 3');
   });
 });
