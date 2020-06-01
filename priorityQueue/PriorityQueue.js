@@ -39,6 +39,14 @@ const PriorityQueue = () => {
     dequeue() {
       return items.length ? items.shift().item : null;
     },
+
+    /*
+     * Returns string with every item stored in the queue
+     * @returns {string}
+     */
+    toString() {
+      return items.reduce((acc, curr) => `${acc}${curr.item} `, '').trim();
+    },
   };
 };
 
