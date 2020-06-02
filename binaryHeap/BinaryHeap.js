@@ -2,6 +2,12 @@ const BinaryHeap = () => {
   const items = [];
 
   return {
+    /*
+     * Adds new item to the Heap
+     * All parents items are larger than of their child items
+     * @params {*} value
+     * @returns {undefined}
+     */
     insert(value) {
       items.push(value);
       let i = items.length - 1;
@@ -20,12 +26,16 @@ const BinaryHeap = () => {
       }
     },
 
+    /*
+     * Remove max value from the heap
+     * @returns {*}
+     */
     removeMax() {
       const max = items[0];
       const last = items.pop();
       let current = (items[0] = last);
-
       let i = 0;
+
       while (true) {
         let leftIndex = 2 * i + 1;
         let rightIndex = 2 * i + 2;
