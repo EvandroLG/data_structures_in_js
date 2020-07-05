@@ -45,7 +45,22 @@ const BinarySearchTree = () => {
       return (root || {}).value === value;
     },
 
-    contains(value) {},
+    contains(value) {
+      let current = root;
+
+      while (current) {
+        if (value < current.value) {
+          current = current.left;
+        } else if (value > current.value) {
+          current = current.right;
+        } else {
+          return true;
+        }
+      }
+
+      return false;
+    },
+
     remove(value) {},
   };
 };
