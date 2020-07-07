@@ -23,14 +23,14 @@ const BinarySearchTree = () => {
       while (true) {
         if (current.value > value) {
           if (isNull(current.left)) {
-            current.left = value;
+            current.left = node;
             return true;
           } else {
             current = current.left;
           }
         } else if (current.value < value) {
           if (isNull(current.right)) {
-            current.right = value;
+            current.right = node;
             return true;
           } else {
             current = current.right;
@@ -61,7 +61,20 @@ const BinarySearchTree = () => {
       return false;
     },
 
-    remove(value) {},
+    findHeight(node = root) {
+      if (!node) {
+        return -1;
+      }
+
+      const left = this.findHeight(node.left);
+      const right = this.findHeight(node.right);
+
+      if (left > right) {
+        return left + 1;
+      }
+
+      return right + 1;
+    },
   };
 };
 

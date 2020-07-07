@@ -21,4 +21,17 @@ describe('bst', () => {
     expect(bst.contains(20)).toBeTruthy();
     expect(bst.contains(30)).toBeTruthy();
   });
+
+  test('findHeight', () => {
+    const bst = BinarySearchTree();
+    expect(bst.findHeight()).toBe(-1);
+
+    bst.insert(10);
+    bst.insert(5);
+    bst.insert(20);
+    bst.insert(30);
+    bst.insert(35);
+
+    expect(bst.findHeight()).toBe(3);
+  });
 });

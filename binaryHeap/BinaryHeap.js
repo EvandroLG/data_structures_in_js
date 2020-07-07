@@ -72,6 +72,9 @@ const BinaryHeap = () => {
       return items.length;
     },
 
+    //@todo - https://stackoverflow.com/questions/35051092/trying-to-understand-max-heapify
+    heapify() {},
+
     toString() {
       return items.reduce((acc, curr) => `${acc}${curr} `, '').trim();
     },
